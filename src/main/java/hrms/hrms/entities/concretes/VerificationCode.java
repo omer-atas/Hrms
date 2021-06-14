@@ -41,10 +41,10 @@ public class VerificationCode {
 	@Column(name="verified_date")
 	private Date verifiedDate;
 	
-	@OneToMany(mappedBy = "verificationCodeCandidates")
+	@OneToMany(mappedBy = "VerificationCodeCandidates")
 	private List<Candidates> candidates;
 	
-	@OneToMany(mappedBy = "verificationCodeEmployers")
+	@OneToMany(mappedBy = "VerificationCodeEmployers")
 	private List<Employers> employers;
 	
 }

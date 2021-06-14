@@ -2,7 +2,6 @@ package hrms.hrms.entities.concretes;
 
 import java.util.List;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,13 +47,15 @@ public class Candidates {
 	private int birthYear;
 	
 	@ManyToOne()
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id_candidates")
 	private Users userCandidate;
 	
-	@OneToMany(mappedBy = "candidatesCv")
+	@ManyToOne()
+	@JoinColumn(name = "verification_code_id_candidates")
+	private VerificationCode VerificationCodeCandidates;
+	
+	@OneToMany(mappedBy = "candidates")
 	private List<CurriculumVitae> curriculumVitaes;
 	
-	@ManyToOne()
-	@JoinColumn(name = "verification_code_id")
-	private VerificationCode verificationCodeCandidates;
+	
 }

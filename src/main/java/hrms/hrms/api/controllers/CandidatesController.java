@@ -35,7 +35,9 @@ public class CandidatesController {
 	
 	@PostMapping("/add")
 	public Result add(@RequestBody Candidates candidates) {
+		
 		return this.candidatesService.add(candidates);
+	
 	}
 
 }

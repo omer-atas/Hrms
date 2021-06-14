@@ -19,7 +19,7 @@ public interface JobAdvertsDao extends JpaRepository<JobAdverts, Integer> {
 	//9- select * from JobAdverts where isJobAdvertActive = true Order deadline Asc
 	
 	
-	@Query("From JobAdverts where isJobAdvertsActive=:isActive and employers.employersId=:employersId")
+	@Query("From JobAdverts where isJobAdvertsActive=:isActive and employersJobAdverts.employersId=:employersId")
 	List<JobAdverts> getByCompanyIsActiveJobAdverts(boolean isActive,int employersId);
 	//10- select * from JobAdverts where isJobAdvertActive = true and employers.employers_id = id
 	

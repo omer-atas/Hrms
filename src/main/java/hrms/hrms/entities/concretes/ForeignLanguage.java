@@ -40,4 +40,5 @@ public class ForeignLanguage {
 	@ManyToOne()
 	@JoinColumn(name = "cv_id")
 	private CurriculumVitae curriculumVitaeForeignLanguage;
+	
 }

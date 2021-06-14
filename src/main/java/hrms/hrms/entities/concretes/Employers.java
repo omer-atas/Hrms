@@ -45,19 +45,19 @@ public class Employers {
 	@Column(name="phone_number")
 	private String phoneNumber;
 	
-	@OneToMany(mappedBy = "employers")
-	private List<JobAdverts> jobAdverts;
-	
 	@ManyToOne()
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id_employers")
 	private Users userEmployer;
 	
 	@ManyToOne()
-	@JoinColumn(name = "verification_code_id")
-	private VerificationCode verificationCodeEmployers;
+	@JoinColumn(name = "verification_code_id_employers")
+	private VerificationCode VerificationCodeEmployers;
 	
 	@ManyToOne()
 	@JoinColumn(name = "employee_confirms_id")
-	private EmployeeConfirms employeeConfirms;
+	private EmployeeConfirms employeeConfirmsEmployers;
+	
+	@OneToMany(mappedBy = "employersJobAdverts")
+	private List<JobAdverts> jobAdverts;
 	
 }

@@ -2,6 +2,7 @@ package hrms.hrms.entities.concretes;
 
 import java.sql.Date;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -50,4 +51,5 @@ public class Schools {
 	@ManyToOne()
 	@JoinColumn(name = "cv_id")
 	private CurriculumVitae curriculumVitaeSchools;
+	
 }

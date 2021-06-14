@@ -1,8 +1,6 @@
 package hrms.hrms.entities.concretes;
-
 import java.sql.Date;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "cv_candidates_users")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","candidatesCv","foreignLanguage","schools","technologyProgramming","jobExperiences"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","foreignLanguage","schools","technologyProgramming","jobExperiences"})
 public class CurriculumVitae {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,18 +50,21 @@ public class CurriculumVitae {
 	private Date lastUpdateDate;
 	
 	@ManyToOne()
-	@JoinColumn(name = "candidate_id")
-	private Candidates candidatesCv;
+	@JoinColumn(name = "candidate_id_cv")
+	private Candidates candidates;
 	
 	@OneToMany(mappedBy = "curriculumVitaeTechnologyProgramming")
 	private List<TechnologyProgramming> technologyProgramming;
 	
-	@OneToMany(mappedBy = "curriculumVitaeJobExperience")
-	private List<JobExperience> jobExperiences;
-	
 	@OneToMany(mappedBy = "curriculumVitaeSchools")
 	private List<Schools> schools;
 	
+	@OneToMany(mappedBy = "curriculumVitaeJobExperience")
+	private List<JobExperience> jobExperiences;
+	
+	
 	@OneToMany(mappedBy = "curriculumVitaeForeignLanguage")
 	private List<ForeignLanguage> foreignLanguage;
+	
+	
 }

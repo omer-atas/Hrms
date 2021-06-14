@@ -30,6 +30,11 @@ public class ForeignLanguageManager implements ForeignLanguageService{
 
 	@Override
 	public Result add(ForeignLanguage foreignLanguage) {
+		
+		if(foreignLanguage.getLanguageLevel() > 5 && foreignLanguage.getLanguageLevel() <= 5 ) {
+			return new SuccessResult("Foreign language doesn't add..");
+		}
+		
 		this.foreignLanguageDao.save(foreignLanguage);
 		return new SuccessResult("ForeignLanguage added..");
 	}

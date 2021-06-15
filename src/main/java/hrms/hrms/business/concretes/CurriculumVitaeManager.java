@@ -2,6 +2,7 @@ package hrms.hrms.business.concretes;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +35,12 @@ public class CurriculumVitaeManager implements CurriculumVitaeService{
 	public DataResult<List<CurriculumVitae>> getAll() {
 		return new SuccessDataResult<List<CurriculumVitae>>(this.curriculumVitaeDao.findAll(),"CurriculumVitae listed..");
 	}
+
+	@Override
+	public DataResult<CurriculumVitae> getByCvId(int cvId) {
+		return new SuccessDataResult<CurriculumVitae>
+		(this.curriculumVitaeDao.getByCvId(cvId),"Data listelendi..");
+	}
+
 
 }

@@ -1,5 +1,6 @@
 package hrms.hrms.entities.concretes;
 import java.sql.Date;
+
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,15 +22,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "cv_candidates_users")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","foreignLanguage","schools","technologyProgramming","jobExperiences"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","foreignLanguage","schools","images","technologyProgramming","jobExperiences"})
 public class CurriculumVitae {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="cv_id")
 	private int cvId;
-	
-	@Column(name="photo")
-	private String photo;
 	
 	@Column(name="github_link")
 	private String githubLink;
@@ -66,5 +64,7 @@ public class CurriculumVitae {
 	@OneToMany(mappedBy = "curriculumVitaeForeignLanguage")
 	private List<ForeignLanguage> foreignLanguage;
 	
+	@OneToMany(mappedBy = "curriculumVitaeImage")
+	private List<Image> images;
 	
 }

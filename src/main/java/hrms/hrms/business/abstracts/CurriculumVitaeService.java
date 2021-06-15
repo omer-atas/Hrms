@@ -11,4 +11,7 @@ public interface CurriculumVitaeService {
 	Result add(CurriculumVitae curriculumVitae);
 	
 	DataResult<List<CurriculumVitae>> getAll();
+	
+	DataResult<CurriculumVitae> getByCvId(int cvId);
+	
 }

@@ -6,4 +6,5 @@ import hrms.hrms.entities.concretes.Department;
 
 public interface DepartmentDao extends JpaRepository<Department , Integer> {
 	 
+	Department  getByTitle(String title);
 }

@@ -3,6 +3,9 @@ package hrms.hrms.entities.concretes;
 import java.util.List;
 
 
+
+
+
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
@@ -13,10 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import hrms.hrms.core.dataAcces.Users;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,8 +29,8 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdverts","userEmployer"})
-public class Employers {
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdverts"})
+public class Employers{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="employer_id")
@@ -45,9 +45,11 @@ public class Employers {
 	@Column(name="phone_number")
 	private String phoneNumber;
 	
-	@ManyToOne()
-	@JoinColumn(name = "user_id_employers")
-	private Users userEmployer;
+	@Column(name="email")
+	private String email;
+	
+	@Column(name="password")
+	private String password;
 	
 	@ManyToOne()
 	@JoinColumn(name = "verification_code_id_employers")

@@ -7,6 +7,10 @@ import hrms.hrms.core.utilies.result.Result;
 import hrms.hrms.entities.concretes.Department;
 
 public interface DepartmentService {
+	
 	DataResult<List<Department>> getAll();
+	
 	Result add(Department department);
+	
+	DataResult<Department> getByTitle(String title);
 }

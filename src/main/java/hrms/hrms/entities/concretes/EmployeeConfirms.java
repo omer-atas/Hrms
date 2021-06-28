@@ -2,6 +2,7 @@ package hrms.hrms.entities.concretes;
 
 import java.sql.Date;
 
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -44,6 +44,7 @@ public class EmployeeConfirms {
 	@ManyToOne()
 	@JoinColumn(name = "employee_id")
 	private Employees employees;
+	
 	
 	@OneToMany(mappedBy = "employeeConfirmsEmployers")
 	private List<Employers> employers;

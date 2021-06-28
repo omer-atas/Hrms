@@ -1,9 +1,11 @@
 package hrms.hrms.core.utilies.adapters.concretes;
+import org.springframework.stereotype.Service;
 
 import hrms.hrms.core.utilies.adapters.abstracts.MernisService;
 import hrms.hrms.entities.concretes.Candidates;
 import tr.gov.nvi.tckimlik.WS.KPSPublicSoapProxy;
 
+@Service
 public class MernisManager implements MernisService{
 
 	@Override

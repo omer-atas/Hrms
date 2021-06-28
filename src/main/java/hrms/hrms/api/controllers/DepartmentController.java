@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import hrms.hrms.business.abstracts.DepartmentService;
@@ -34,6 +35,11 @@ public class DepartmentController {
 	@PostMapping("/add")
 	public Result add(@RequestBody Department department) {
 		return this.departmentService.add(department);
+	}
+	
+	@GetMapping("/getByTitle")
+	public DataResult<Department> getByTitle(@RequestParam("title") String title) {
+		return this.departmentService.getByTitle(title);
 	}
 
 }

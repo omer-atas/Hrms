@@ -11,10 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import hrms.hrms.core.dataAcces.Users;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,7 +25,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","curriculumVitaes"})
-public class Candidates {
+public class Candidates{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="candidate_id")
@@ -45,17 +42,19 @@ public class Candidates {
 	
 	@Column(name="birth_year")
 	private int birthYear;
+		
+	@Column(name="email")
+	private String email;
 	
-	@ManyToOne()
-	@JoinColumn(name = "user_id_candidates")
-	private Users userCandidate;
+	@Column(name="password")
+	private String password;
 	
 	@ManyToOne()
 	@JoinColumn(name = "verification_code_id_candidates")
 	private VerificationCode VerificationCodeCandidates;
 	
+	
 	@OneToMany(mappedBy = "candidates")
 	private List<CurriculumVitae> curriculumVitaes;
-	
 	
 }

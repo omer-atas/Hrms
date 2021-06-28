@@ -2,6 +2,7 @@ package hrms.hrms.entities.concretes;
 
 import java.sql.Date;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,6 +37,7 @@ public class ForeignLanguage {
 	
 	@Column(name="create_date_foreign_language")
 	private Date foreignLanguageCreateDate;
+	
 	
 	@ManyToOne()
 	@JoinColumn(name = "cv_id")

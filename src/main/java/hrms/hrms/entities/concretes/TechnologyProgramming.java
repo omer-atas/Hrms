@@ -35,6 +35,7 @@ public class TechnologyProgramming {
 	@Column(name="create_date_foreign_language")
 	private Date createDateForeignLanguage;
 	
+	
 	@ManyToOne()
 	@JoinColumn(name = "cv_id")
 	private CurriculumVitae curriculumVitaeTechnologyProgramming;

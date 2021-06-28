@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -39,11 +40,13 @@ public class VerificationCode {
 	private boolean isVerified;
 
 	@Column(name="verified_date")
-	private Date verifiedDate;
+	private Date verifiedDate ;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "VerificationCodeCandidates")
 	private List<Candidates> candidates;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "VerificationCodeEmployers")
 	private List<Employers> employers;
 	

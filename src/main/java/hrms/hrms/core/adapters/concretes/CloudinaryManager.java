@@ -1,10 +1,10 @@
 package hrms.hrms.core.adapters.concretes;
 
 import java.io.IOException;
+
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

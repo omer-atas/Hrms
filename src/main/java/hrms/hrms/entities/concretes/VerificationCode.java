@@ -10,7 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
+import org.aspectj.apache.bcel.ExceptionConstants;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -40,10 +44,11 @@ public class VerificationCode {
 	private boolean isVerified;
 
 	@Column(name="verified_date")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "2000-01-01")
 	private Date verifiedDate ;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "VerificationCodeCandidates")
+	@OneToMany(mappedBy = "verificationCodeCandidates")
 	private List<Candidates> candidates;
 	
 	@JsonIgnore

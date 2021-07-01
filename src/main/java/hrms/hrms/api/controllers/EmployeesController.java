@@ -65,4 +65,9 @@ public class EmployeesController {
 	public DataResult<Employees> getByEmail(String email){
 		return this.employeesService.getByEmail(email);		
 	}
+	
+	@GetMapping("/getByEmployeeId")
+	public DataResult<Employees> getByEmployeeId(int employeeId) {
+		return this.employeesService.getByEmployeeId(employeeId);
+	}
 }

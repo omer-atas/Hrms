@@ -12,4 +12,6 @@ public interface VerificationCodeService {
 	DataResult<List<VerificationCode>> getAll();
 	
 	Result add(VerificationCode verificationCode);
+	
+	DataResult<VerificationCode> getByVerificationCodeId(int verificationCodeId);
 }

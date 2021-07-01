@@ -35,4 +35,9 @@ public class EmployeeConfirmsController {
 	public DataResult<List<EmployeeConfirms>> getAll(){
 		return this.employeeConfirmsService.getAll();
 	}
+	
+	@GetMapping("/getByEmployeeConfirmId")
+	public DataResult<EmployeeConfirms> getByEmployeeConfirmId(int employeeConfirmId) {
+		return this.employeeConfirmsService.getByEmployeeConfirmId(employeeConfirmId);
+	}
 }

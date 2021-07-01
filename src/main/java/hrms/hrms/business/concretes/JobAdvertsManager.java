@@ -12,9 +12,13 @@ import org.springframework.stereotype.Service;
 
 import hrms.hrms.business.abstracts.JobAdvertsService;
 import hrms.hrms.core.utilies.result.DataResult;
+import hrms.hrms.core.utilies.result.ErrorResult;
 import hrms.hrms.core.utilies.result.Result;
 import hrms.hrms.core.utilies.result.SuccessDataResult;
 import hrms.hrms.core.utilies.result.SuccessResult;
+import hrms.hrms.dataAcces.abstracts.CityDao;
+import hrms.hrms.dataAcces.abstracts.DepartmentDao;
+import hrms.hrms.dataAcces.abstracts.EmployersDao;
 import hrms.hrms.dataAcces.abstracts.JobAdvertsDao;
 import hrms.hrms.entities.concretes.JobAdverts;
 
@@ -22,15 +26,41 @@ import hrms.hrms.entities.concretes.JobAdverts;
 public class JobAdvertsManager implements JobAdvertsService{
 
 	private JobAdvertsDao jobAdvertsDao;
+	private EmployersDao employerDao;
+	private DepartmentDao departmentDao;
+	private CityDao cityDao;
 	
 	@Autowired
-	public JobAdvertsManager(JobAdvertsDao jobAdvertsDao) {
+	public JobAdvertsManager(JobAdvertsDao jobAdvertsDao,EmployersDao employerDao,
+										DepartmentDao departmentDao,CityDao cityDao) {
 		super();
 		this.jobAdvertsDao = jobAdvertsDao;
+		this.employerDao = employerDao;
+		this.departmentDao = departmentDao;
+		this.cityDao = cityDao;
 	}
 
 	@Override
 	public Result add(JobAdverts jobAdverts) {
+		
+		int employerId = jobAdverts.getEmployersJobAdverts().getEmployersId();
+		int jobTitleId = jobAdverts.getDepartmentJobAdverts().getJobTitleId();
+		int cityId 	   = jobAdverts.getCityJobAdverts().getCityId();
+		
+		if(employerId == 0) {
+			return new ErrorResult("Bu ilanı hangi işverenin oluşturduğunu giriniz..");
+		}else if(this.employerDao.getByEmployersId(employerId) == null) {
+			return new ErrorResult("Böyle bir işveren bulunmamaktadır..");
+		}else if(jobTitleId == 0) {
+			return new ErrorResult("Bu ilanın iş pozisyonunu giriniz..");
+		}else if(this.departmentDao.getByJobTitleId(jobTitleId) == null) {
+			return new ErrorResult("Böyle bir iş pozisyonu bulunmamaktadır..");
+		}else if(cityId == 0) {
+			return new ErrorResult("Bu ilanın lokasyonunu giriniz..");
+		}else if(this.cityDao.getByCityId(cityId) == null) {
+			return new ErrorResult("Böyle bir lokaasyon yeri bulunmamaktadır..");
+		}
+		
 		this.jobAdvertsDao.save(jobAdverts);
 		return new SuccessResult("JobAdverts added..");
 	}

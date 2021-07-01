@@ -29,4 +29,11 @@ public class CityManager implements CityService {
 		return new SuccessDataResult<List<City>>(this.cityDao.findAll(),"City listed...");
 	}
 
+
+
+	@Override
+	public DataResult<City> getByCityId(int cityId) {
+		return new SuccessDataResult<City>(this.cityDao.getByCityId(cityId),"City listed...");
+	}
+
 }

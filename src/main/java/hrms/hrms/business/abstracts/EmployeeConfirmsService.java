@@ -11,4 +11,6 @@ public interface EmployeeConfirmsService {
 	DataResult<List<EmployeeConfirms>> getAll();
 	
 	Result add(EmployeeConfirms employeeConfirms);
+	
+	DataResult<EmployeeConfirms> getByEmployeeConfirmId(int employeeConfirmId);
 }

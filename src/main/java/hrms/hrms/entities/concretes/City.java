@@ -12,8 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,9 +37,11 @@ public class City {
 	private int cityId;
 	
 	@Column(name="city_name")
+	@NotBlank(message = "Şehir alanı boş bırakılamaz..")
+	@NotNull
 	private String cityName;
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "cityJobAdverts")
 	private List<JobAdverts> jobAdverts;
 }

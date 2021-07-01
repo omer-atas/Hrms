@@ -6,5 +6,8 @@ import hrms.hrms.core.utilies.result.DataResult;
 import hrms.hrms.entities.concretes.City;
 
 public interface CityService {
+	
 	DataResult<List<City>> getAll();
+	
+	DataResult<City> getByCityId(int cityId);
 }

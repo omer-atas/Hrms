@@ -41,5 +41,9 @@ public class DepartmentController {
 	public DataResult<Department> getByTitle(@RequestParam("title") String title) {
 		return this.departmentService.getByTitle(title);
 	}
-
+	
+	@GetMapping("/getByJobTitleId")
+	public DataResult<Department> getByJobTitleId(int jobTitleId) {
+		return this.departmentService.getByJobTitleId(jobTitleId);
+	}
 }

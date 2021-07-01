@@ -36,4 +36,9 @@ public class VerificationCodeController {
 		return this.verificationCodeService.getAll();
 	}
 	
+	@GetMapping("/getByVerificationCodeId")
+	public DataResult<VerificationCode> getByVerificationCodeId(int verificationCodeId) {
+		return this.verificationCodeService.getByVerificationCodeId(verificationCodeId);
+	}
+	
 }

@@ -15,22 +15,26 @@ import hrms.hrms.core.utilies.result.Result;
 import hrms.hrms.core.utilies.result.SuccessDataResult;
 import hrms.hrms.core.utilies.result.SuccessResult;
 import hrms.hrms.dataAcces.abstracts.CandidatesDao;
+import hrms.hrms.dataAcces.abstracts.VerificationCodeDao;
 import hrms.hrms.entities.concretes.Candidates;
 
 @Service
 public class CandidatesManager implements CandidatesService {
 	
-	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = 
-		    Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+	private static final String VALID_EMAIL_ADDRESS_REGEX = 
+			"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 	
 
 	private CandidatesDao candidatesDao;
 	private MernisService mernisService;
+	private VerificationCodeDao verificationCodeDao;
 	
 	@Autowired
-	public CandidatesManager(CandidatesDao candidatesDao,MernisService mernisService) {
+	public CandidatesManager(CandidatesDao candidatesDao,MernisService mernisService,
+			VerificationCodeDao verificationCodeDao) {
 		this.candidatesDao = candidatesDao;
 		this.mernisService = mernisService;
+		this.verificationCodeDao = verificationCodeDao;
 	}
 
 	@Override
@@ -48,7 +52,9 @@ public class CandidatesManager implements CandidatesService {
 	@Override
 	public Result add(Candidates candidates) {
 		
-		if(candidates.getIdentityNumber().length() != 11 && !validateEmail(candidates.getEmail()) && 
+		int verificationCodeId = candidates.getVerificationCodeCandidates().getVerificationCodeId();
+		
+		if(candidates.getIdentityNumber().length() != 11 && 
 				!this.mernisService.checkIfReal(candidates)) {
 			
 			return new ErrorResult("Not an identification number or Don't in email format.");
@@ -56,6 +62,17 @@ public class CandidatesManager implements CandidatesService {
 		}else {
 			if(!checkIdentityNumber(candidates.getIdentityNumber()) && !checkEmail(candidates.getEmail())) {
 				return new ErrorResult("There is already a candidate with this ID number or Email registered.");
+			}else if(!validateEmail(candidates.getEmail())) {
+				return new ErrorResult("Hata");
+			}else if(verificationCodeId == 0) {
+				return new ErrorResult("Bu iş arayanın doğrulama kodunu giriniz..");
+			}else if(this.verificationCodeDao.getByVerificationCodeId(verificationCodeId) == null) {
+				return new ErrorResult("Böyle bir doğrulama kodu bulunmamaktadır..");
+			}else if((candidates.getBirthYear() == 0) && (candidates.getFirstName() == null) &&
+					(candidates.getLastName() == null) && (candidates.getIdentityNumber() == null) &&
+					(candidates.getEmail() == null) && (candidates.getPassword() == null)) {
+				return new ErrorResult("Hiçbir alan boş bırakılamaz...");
+				
 			}
 				
 			this.candidatesDao.save(candidates);
@@ -76,8 +93,9 @@ public class CandidatesManager implements CandidatesService {
 	}
 	
 	public static boolean validateEmail(String emailStr) {
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
-        return matcher.find();
+		Pattern pattern = Pattern.compile(VALID_EMAIL_ADDRESS_REGEX,
+				Pattern.CASE_INSENSITIVE);
+				return pattern.matcher(emailStr).find();
 	}
 
 	private boolean checkEmail(String email) {
@@ -86,6 +104,11 @@ public class CandidatesManager implements CandidatesService {
 		}
 		
 		return true;
+	}
+
+	@Override
+	public DataResult<Candidates> getByCandidateId(int candidateId) {
+		return new SuccessDataResult<Candidates>(this.candidatesDao.getByCandidateId(candidateId),"Candidates listed..");
 	}
 	
 

@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+
+import com.sun.istack.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +30,8 @@ public class Image {
 	private int imageId;
 	
 	@Column(name="image_url")
+	@NotBlank(message = "Fotoğraf alanı boş bırakılamaz..")
+	@NotNull
 	private String image_url;
 	
 	@ManyToOne()

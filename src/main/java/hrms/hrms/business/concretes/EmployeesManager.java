@@ -42,6 +42,8 @@ public class EmployeesManager implements EmployeesService{
 		}else {
 			if(!checkEmail(employees.getEmail())) {
 				return new ErrorResult("Email registered.");
+			}else if((employees.getEmail() == null) &&(employees.getPassword() == null)) {
+				return new ErrorResult("Hiçbir alan boş bırakılamaz...");
 			}
 			
 			this.employeesDao.save(employees);
@@ -66,6 +68,11 @@ public class EmployeesManager implements EmployeesService{
 		}
 		
 		return true;
+	}
+
+	@Override
+	public DataResult<Employees> getByEmployeeId(int employeeId) {
+		return new SuccessDataResult<Employees>(this.employeesDao.getByEmployeeId(employeeId), "Employers listed..");
 	}
 
 }

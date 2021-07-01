@@ -5,5 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import hrms.hrms.entities.concretes.EmployeeConfirms;
 
 public interface EmployeeConfirmsDao  extends JpaRepository<EmployeeConfirms, Integer>{
+	
+	EmployeeConfirms getByEmployeeConfirmId(int employeeConfirmId);
 
 }

@@ -27,4 +27,9 @@ public class CityController {
 	public DataResult<List<City>> getAll(){
 		return this.cityService.getAll();
 	}
+	
+	@GetMapping("/getByCityId")
+	public DataResult<City> getByCityId(int cityId) {
+		return this.cityService.getByCityId(cityId);
+	}
 }

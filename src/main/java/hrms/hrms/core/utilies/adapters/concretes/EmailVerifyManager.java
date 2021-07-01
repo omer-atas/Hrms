@@ -1,7 +1,10 @@
 package hrms.hrms.core.utilies.adapters.concretes;
 
+import org.springframework.stereotype.Service;
+
 import hrms.hrms.core.utilies.adapters.abstracts.EmailVerificationService;
 
+@Service
 public class EmailVerifyManager  implements EmailVerificationService{
 
 	@Override

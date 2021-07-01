@@ -12,6 +12,8 @@ public interface EmployersService {
 	
 	Result add(Employers employers);
 	
+	DataResult<Employers> getByEmployersId(int employersId);
+	
 	DataResult<Employers> getByEmail(String email);
 	
 	DataResult<Employers> getByWebAddress(String webAddress);

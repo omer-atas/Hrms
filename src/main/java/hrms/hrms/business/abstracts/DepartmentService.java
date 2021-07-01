@@ -12,5 +12,7 @@ public interface DepartmentService {
 	
 	Result add(Department department);
 	
+	DataResult<Department> getByJobTitleId(int jobTitleId);
+	
 	DataResult<Department> getByTitle(String title);
 }

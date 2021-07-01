@@ -45,6 +45,11 @@ public class DepartmentManager implements DepartmentService{
 	public DataResult<Department> getByTitle(String title) {
 		return new SuccessDataResult<Department>(this.departmentDao.getByTitle(title),"Departments listed..");
 	}
+
+	@Override
+	public DataResult<Department> getByJobTitleId(int jobTitleId) {
+		return new SuccessDataResult<Department>(this.departmentDao.getByJobTitleId(jobTitleId),"Departments listed..");
+	}
 	
 	
 }

@@ -74,5 +74,10 @@ public class CandidatesController {
 	public DataResult<Candidates> getByEmail(String email){
 		return this.candidatesService.getByEmail(email);		
 	}
+	
+	@GetMapping("/getById")
+	public DataResult<Candidates> getByCandidateId(int candidateId) {
+		return this.candidatesService.getByCandidateId(candidateId);
+	}
 
 }

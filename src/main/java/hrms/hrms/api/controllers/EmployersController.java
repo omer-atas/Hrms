@@ -71,4 +71,9 @@ public class EmployersController {
 	public DataResult<Employers> getByWebAddress(String webAddress) {
 		return this.employersService.getByWebAddress(webAddress);
 	}
+	
+	@GetMapping("/getByEmployersId")
+	public DataResult<Employers> getByEmployersId(int employersId) {
+		return this.employersService.getByEmployersId(employersId);
+	}
 }

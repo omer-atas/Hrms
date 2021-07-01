@@ -10,4 +10,6 @@ public interface CandidatesDao extends JpaRepository<Candidates , Integer>{
 	
 	Candidates getByEmail(String email);
 	
+	Candidates getByCandidateId(int candidateId);
+	
 }

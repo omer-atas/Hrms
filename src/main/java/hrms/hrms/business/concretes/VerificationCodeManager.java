@@ -15,23 +15,28 @@ import hrms.hrms.entities.concretes.VerificationCode;
 @Service
 public class VerificationCodeManager implements VerificationCodeService{
 	
-	private VerificationCodeDao VerificationCodeDao;
+	private VerificationCodeDao verificationCodeDao;
 	
 	@Autowired
-	public VerificationCodeManager(hrms.hrms.dataAcces.abstracts.VerificationCodeDao verificationCodeDao) {
+	public VerificationCodeManager(VerificationCodeDao verificationCodeDao) {
 		super();
-		VerificationCodeDao = verificationCodeDao;
+		this.verificationCodeDao = verificationCodeDao;
 	}
 
 	@Override
 	public DataResult<List<VerificationCode>> getAll() {
-		return new SuccessDataResult<List<VerificationCode>>(this.VerificationCodeDao.findAll(),"Data listelendi..");
+		return new SuccessDataResult<List<VerificationCode>>(this.verificationCodeDao.findAll(),"Data listelendi..");
 	}
 
 	@Override
 	public Result add(VerificationCode verificationCode) {
-		this.VerificationCodeDao.save(verificationCode);
+		this.verificationCodeDao.save(verificationCode);
 		return new SuccessResult("VerificationCode added..");
+	}
+
+	@Override
+	public DataResult<VerificationCode> getByVerificationCodeId(int verificationCodeId) {
+		return new SuccessDataResult<VerificationCode>(this.verificationCodeDao.getByVerificationCodeId(verificationCodeId), "Data listelendi..");
 	}
 
 }

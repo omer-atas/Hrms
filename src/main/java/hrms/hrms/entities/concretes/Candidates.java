@@ -11,7 +11,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,6 +50,9 @@ public class Candidates{
 	private int birthYear;
 		
 	@Column(name="email")
+	@Email
+	@NotBlank
+	@NotNull
 	private String email;
 	
 	@Column(name="password")
@@ -51,9 +60,9 @@ public class Candidates{
 	
 	@ManyToOne()
 	@JoinColumn(name = "verification_code_id_candidates")
-	private VerificationCode VerificationCodeCandidates;
+	private VerificationCode verificationCodeCandidates;
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "candidates")
 	private List<CurriculumVitae> curriculumVitaes;
 	

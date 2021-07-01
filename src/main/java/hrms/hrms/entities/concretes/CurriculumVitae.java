@@ -10,9 +10,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -41,32 +44,41 @@ public class CurriculumVitae {
 	private String description;
 	
 	@Column(name="create_date_cv")
+	@NotBlank(message = "Oluşturulma tarihi alanı boş bırakılamaz..")
+	@NotNull
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "2000-01-01")
 	private Date createDateCv;
 	
 	@Column(name="is_active")
+	@NotBlank(message = "Özgeçmisin durumu alanı boş bırakılamaz..")
+	@NotNull
 	private boolean isActive;
 	
 	@Column(name="last_update_date")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "2000-01-01")
 	private Date lastUpdateDate;
 	
-	@JsonIgnore
 	@ManyToOne()
 	@JoinColumn(name = "candidate_id_cv")
 	private Candidates candidates;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "curriculumVitaeTechnologyProgramming")
 	private List<TechnologyProgramming> technologyProgramming;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "curriculumVitaeSchools")
 	private List<Schools> schools;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "curriculumVitaeJobExperience")
 	private List<JobExperience> jobExperiences;
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "curriculumVitaeForeignLanguage")
 	private List<ForeignLanguage> foreignLanguage;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "curriculumVitaeImage")
 	private List<Image> images;
 }

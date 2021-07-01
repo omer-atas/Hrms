@@ -12,9 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,6 +37,8 @@ public class Department {
 	private int jobTitleId;
 	
 	@Column(name="title")
+	@NotBlank(message = "İş pozisyon alanı boş bırakılamaz..")
+	@NotNull
 	private String title;
 	
 	@JsonIgnore

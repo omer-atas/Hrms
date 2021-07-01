@@ -13,7 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sun.istack.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,12 +37,19 @@ public class JobExperience {
 	
 	
 	@Column(name="start_year")
+	@NotBlank(message = "İş tecrübesi alanı boş bırakılamaz..")
+	@NotNull
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "2000-01-01")
 	private Date startYear;
 	
 	@Column(name="leave_year")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "2000-01-01")
 	private Date leaveYear;
 	
 	@Column(name="create_date_job_experience")
+	@NotBlank(message = "Oluşturulma tarihi boş bırakılamaz..")
+	@NotNull
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "2000-01-01")
 	private Date createDateYear;
 	
 	@Column(name="workplace_name")

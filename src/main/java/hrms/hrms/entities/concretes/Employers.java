@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -59,6 +61,7 @@ public class Employers{
 	@JoinColumn(name = "employee_confirms_id")
 	private EmployeeConfirms employeeConfirmsEmployers;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "employersJobAdverts")
 	private List<JobAdverts> jobAdverts;
 	
